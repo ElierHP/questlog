@@ -1,9 +1,11 @@
-import Navbar from "./components/Navbar/Navbar";
+import Navbar from "./components/navbar/Navbar";
+import Quests from "./components/quests/Quests";
 
 function App() {
   return (
     <div>
       <Navbar />
+      <Quests />
     </div>
   );
 }
