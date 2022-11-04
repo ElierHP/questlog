@@ -6,12 +6,21 @@ import { BsExclamationLg } from "react-icons/bs";
 export default function Navbar() {
   const dispatch = useAppDispatch();
   return (
-    <header>
-      <div className={styles.wrapper}>
+    <header className={styles.header}>
+      <div className={styles.logo}>
+        {/* Heading */}
         <h1 className={`center ${styles.heading}`}>Quest Log</h1>
-        <div className={styles.btnContainer}>
-          <BsExclamationLg
-            className={styles.icon}
+
+        {/* Exclamation Icon */}
+        <div className={styles.iconContainer}>
+          <BsExclamationLg className={styles.icon} size={37} />
+        </div>
+      </div>
+
+      {/* Nav list */}
+      <nav>
+        <ul className={styles.navlist}>
+          <li
             onClick={() =>
               dispatch(
                 add({
@@ -21,10 +30,13 @@ export default function Navbar() {
                 })
               )
             }
-            size={37}
-          />
-        </div>
-      </div>
+          >
+            New Quest!
+          </li>
+          <li>Current</li>
+          <li>Completed</li>
+        </ul>
+      </nav>
     </header>
   );
 }

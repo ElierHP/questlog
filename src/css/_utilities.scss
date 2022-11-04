@@ -1,8 +1,21 @@
+// Alignment
 .center {
   text-align: center;
 }
 
+// Fonts
+.font-small {
+  font-size: $font-small;
+}
+
+// Misc
 .container {
-  max-width: 800px;
+  max-width: 1200px;
+  padding: 0 2rem;
   margin: auto;
+}
+
+.line {
+  height: 2px;
+  background-color: black;
 }

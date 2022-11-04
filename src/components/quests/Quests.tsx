@@ -11,7 +11,10 @@ export default function Quests() {
           <li key={quest.name}>
             <h2>{quest.name}</h2>
             <p>{quest.description}</p>
-            <button>Complete Quest</button>
+            <div>
+              <button className={styles.button}>Complete Quest</button>
+              <p className={"center font-small"}>abandon quest</p>
+            </div>
           </li>
         ))}
       </ul>

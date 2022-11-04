@@ -1,14 +1,21 @@
 @import "../../css/variables";
 
-.wrapper {
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+}
+
+.logo {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 0.2rem;
-  margin-top: 1rem;
+  cursor: pointer;
 }
 
-.btnContainer {
+.iconContainer {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -16,6 +23,18 @@
 
 .icon {
   transform: rotate(10deg);
-  cursor: pointer;
   color: $primary;
+}
+
+.navlist {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  li {
+    cursor: pointer;
+    &:hover {
+      color: $primary;
+    }
+  }
 }
