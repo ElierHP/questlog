@@ -1,5 +1,15 @@
-import React from "react";
+import { useAppSelector } from "../redux/hooks";
 
 export default function Quests() {
-  return <div>Quests</div>;
+  const { quests } = useAppSelector((state) => state.quests);
+
+  return (
+    <div>
+      <ul>
+        {quests.map((quest) => (
+          <li key={quest.name}>{quest.name}</li>
+        ))}
+      </ul>
+    </div>
+  );
 }
