@@ -1,0 +1,21 @@
+@import "../../css/variables";
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.2rem;
+  margin-top: 1rem;
+}
+
+.btnContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon {
+  transform: rotate(10deg);
+  cursor: pointer;
+  color: $primary;
+}
