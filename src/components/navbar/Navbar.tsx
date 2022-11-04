@@ -12,7 +12,15 @@ export default function Navbar() {
         <div className={styles.btnContainer}>
           <BsExclamationLg
             className={styles.icon}
-            onClick={() => dispatch(add("New Quest!"))}
+            onClick={() =>
+              dispatch(
+                add({
+                  name: "New Quest",
+                  description: "Amazing quest to complete",
+                  completed: false,
+                })
+              )
+            }
             size={37}
           />
         </div>

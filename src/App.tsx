@@ -3,7 +3,7 @@ import Quests from "./components/quests/Quests";
 
 function App() {
   return (
-    <div>
+    <div className="container">
       <Navbar />
       <Quests />
     </div>

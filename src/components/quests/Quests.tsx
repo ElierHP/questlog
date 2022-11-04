@@ -1,15 +1,20 @@
 import { useAppSelector } from "../redux/hooks";
+import styles from "./Quests.module.scss";
 
 export default function Quests() {
   const { quests } = useAppSelector((state) => state.quests);
 
   return (
-    <div>
-      <ul>
+    <main className={styles.main}>
+      <ul className={styles.list}>
         {quests.map((quest) => (
-          <li key={quest.name}>{quest.name}</li>
+          <li key={quest.name}>
+            <h2>{quest.name}</h2>
+            <p>{quest.description}</p>
+            <button>Complete Quest</button>
+          </li>
         ))}
       </ul>
-    </div>
+    </main>
   );
 }

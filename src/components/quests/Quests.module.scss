@@ -1,0 +1,20 @@
+@import "../../css/variables";
+
+.main {
+  margin-top: 3rem;
+}
+
+.list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 2rem;
+  li {
+    background-color: $neutral;
+    padding: 4rem 2rem;
+    border-radius: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+}
