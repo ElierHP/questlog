@@ -1,6 +1,6 @@
 import styles from "./Navbar.module.scss";
-import { useAppDispatch } from "../redux/hooks";
-import { add } from "../redux/features/questSlice";
+import { useAppDispatch } from "../../app/hooks";
+import { add } from "../../app/features/questSlice";
 import { BsExclamationLg } from "react-icons/bs";
 
 export default function Navbar() {

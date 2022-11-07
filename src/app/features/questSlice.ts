@@ -5,6 +5,7 @@ type questType = {
   description: string;
   completed: boolean;
 };
+
 type InitialState = {
   quests: questType[];
 };
@@ -23,6 +24,7 @@ const questSlice = createSlice({
   name: "quests",
   initialState,
   reducers: {
+    // Add a new quest, payload should be an object.
     add: (state, action: PayloadAction<questType>) => {
       state.quests.push(action.payload);
     },

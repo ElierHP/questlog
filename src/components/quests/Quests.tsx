@@ -1,4 +1,4 @@
-import { useAppSelector } from "../redux/hooks";
+import { useAppSelector } from "../../app/hooks";
 import styles from "./Quests.module.scss";
 
 export default function Quests() {
@@ -7,6 +7,7 @@ export default function Quests() {
   return (
     <main className={styles.main}>
       <ul className={styles.list}>
+        {/* Render list items based on quests global state */}
         {quests.map((quest) => (
           <li key={quest.name}>
             <h2>{quest.name}</h2>

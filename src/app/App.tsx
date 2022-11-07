@@ -1,5 +1,5 @@
-import Navbar from "./components/navbar/Navbar";
-import Quests from "./components/quests/Quests";
+import Navbar from "../components/navbar/Navbar";
+import Quests from "../components/quests/Quests";
 
 function App() {
   return (
