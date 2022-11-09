@@ -1,6 +1,6 @@
 import styles from "./Header.module.scss";
 import { useAppDispatch } from "../../app/hooks";
-import { add } from "../../app/features/questSlice";
+import { add } from "../../app/features/taskSlice";
 import { BsExclamationLg } from "react-icons/bs";
 
 export default function Header() {
@@ -9,7 +9,7 @@ export default function Header() {
     <header className={styles.header}>
       <div className={styles.logo}>
         {/* Heading */}
-        <h1 className={`center ${styles.heading}`}>Quest Log</h1>
+        <h1 className={`center ${styles.heading}`}>Task Notes</h1>
 
         {/* Exclamation Icon */}
         <div className={styles.iconContainer}>
@@ -24,14 +24,14 @@ export default function Header() {
             onClick={() =>
               dispatch(
                 add({
-                  name: "New Quest",
-                  description: "Amazing quest to complete",
+                  name: "New Task",
+                  description: "Amazing task to complete",
                   completed: false,
                 })
               )
             }
           >
-            New Quest!
+            New Task!
           </li>
           <li>Current</li>
           <li>Completed</li>

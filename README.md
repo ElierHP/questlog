@@ -1,3 +1,3 @@
-# Quest Log
+# Task Notes
 
-Todolist application with a fun game-like theme. Currently work in progress.
+Task tracking application built with React, Redux, Typescript, Testing. Work in progress.
