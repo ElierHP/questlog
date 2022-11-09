@@ -1,9 +1,9 @@
-import styles from "./Navbar.module.scss";
+import styles from "./Header.module.scss";
 import { useAppDispatch } from "../../app/hooks";
 import { add } from "../../app/features/questSlice";
 import { BsExclamationLg } from "react-icons/bs";
 
-export default function Navbar() {
+export default function Header() {
   const dispatch = useAppDispatch();
   return (
     <header className={styles.header}>

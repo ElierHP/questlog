@@ -1,10 +1,10 @@
 import { screen } from "@testing-library/react";
 import { renderWithProviders } from "../../test-utils";
-import Navbar from "./Navbar";
+import Header from "./Header";
 
 describe("Navbar", () => {
   test("renders heading", () => {
-    renderWithProviders(<Navbar />);
+    renderWithProviders(<Header />);
     const heading = screen.getByRole("heading");
     expect(heading).toBeInTheDocument();
   });

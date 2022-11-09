@@ -1,12 +1,11 @@
-import Navbar from "../components/navbar/Navbar";
+import Layout from "../components/layout/Layout";
 import Quests from "../components/quests/Quests";
 
 function App() {
   return (
-    <div className="container">
-      <Navbar />
+    <Layout>
       <Quests />
-    </div>
+    </Layout>
   );
 }
 
