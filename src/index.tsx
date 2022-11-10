@@ -5,6 +5,7 @@ import "./css/index.scss";
 import App from "./app/App";
 import { Provider } from "react-redux";
 import { setupStore } from "./app/store";
+import { BrowserRouter } from "react-router-dom";
 
 // Setup redux store.
 const store = setupStore();
@@ -14,8 +15,10 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <App />
-    </Provider>
+    <BrowserRouter>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </BrowserRouter>
   </React.StrictMode>
 );

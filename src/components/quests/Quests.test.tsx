@@ -1,10 +1,10 @@
 import { screen } from "@testing-library/react";
 // We're using our own custom render function and not RTL's render.
 import { renderWithProviders } from "../../test-utils";
-import Tasks from "./Tasks";
+import Quests from "./Quests";
 
-test("Tasks renders list items", async () => {
-  const initialTasks = [
+test("Quests renders list items", async () => {
+  const initialQuests = [
     {
       name: "Test1",
       description: "Test description 1",
@@ -17,14 +17,14 @@ test("Tasks renders list items", async () => {
     },
   ];
 
-  renderWithProviders(<Tasks />, {
+  renderWithProviders(<Quests />, {
     preloadedState: {
-      tasks: {
-        tasks: initialTasks,
+      quests: {
+        quests: initialQuests,
       },
     },
   });
 
   const listItems = screen.getAllByRole("listitem");
-  expect(listItems).toHaveLength(2);
+  expect(listItems).toHaveLength(initialQuests.length);
 });
