@@ -13,8 +13,8 @@ export default function Quests() {
             <h2>{quest.name}</h2>
             <p>{quest.description}</p>
             <div>
-              <button className={styles.button}>Complete Task</button>
-              <p className={"center font-small"}>abandon task</p>
+              <button className={styles.button}>Complete Quest</button>
+              <p className={"center font-small"}>abandon quest</p>
             </div>
           </li>
         ))}

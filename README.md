@@ -1,3 +1,3 @@
-# Task Notes
+# Quest Log
 
-Task tracking application built with React, Redux, Typescript, Testing. Work in progress.
+Task tracking application with a game-like theme built with React, Redux, Typescript, Testing. Work in progress.

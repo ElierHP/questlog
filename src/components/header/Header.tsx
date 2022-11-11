@@ -2,30 +2,23 @@ import { useEffect, useState } from "react";
 import styles from "./Header.module.scss";
 import { BsExclamationLg } from "react-icons/bs";
 import { Link } from "react-router-dom";
+import { headerData } from "./headerData";
 
 export default function Header() {
   // Keeps track of current url, used for highlighting anchor tag.
-  const [page, setPage] = useState("/");
+  const [url, setUrl] = useState("/");
 
-  // Changes the page state based on the current url.
+  // On first component load, change the url state to match the current route.
   useEffect(() => {
-    // if rooturl/new, changes page state to "/new"
+    // if rooturl/new, changes url state to "/new"
     if (window.location.href.includes("/new")) {
-      setPage("/new");
+      setUrl("/new");
     } else if (window.location.href.includes("/completed")) {
-      setPage("/completed");
+      setUrl("/completed");
     } else {
-      setPage("/");
+      setUrl("/");
     }
   }, []);
-
-  // Returns a string based on url parameter. Used for setting className.
-  const setClass = (url: string) => {
-    if (page === url) {
-      return "secondary";
-    }
-    return "";
-  };
 
   return (
     <header className={styles.header}>
@@ -44,23 +37,17 @@ export default function Header() {
       {/* Nav list */}
       <nav>
         <ul className={styles.navlist}>
-          <li>
-            <Link to="/" className={setClass("/")}>
-              Current
-            </Link>
-          </li>
-
-          <li>
-            <Link to="/completed" className={setClass("/completed")}>
-              Completed
-            </Link>
-          </li>
-
-          <li>
-            <Link to="/new" className={setClass("/new")}>
-              New Quest
-            </Link>
-          </li>
+          {headerData.map((data) => (
+            <li key={data.url}>
+              <Link
+                to={data.url}
+                className={url === data.url ? "secondary" : ""}
+                onClick={() => setUrl(data.url)}
+              >
+                {data.name}
+              </Link>
+            </li>
+          ))}
         </ul>
       </nav>
     </header>
