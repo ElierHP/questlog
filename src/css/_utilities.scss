@@ -3,6 +3,18 @@
   text-align: center;
 }
 
+// Spacing
+.mt-1 {
+  margin-top: 1rem;
+}
+
+.mt-2 {
+  margin-top: 2rem;
+}
+
+.mb-1 {
+  margin-bottom: 1rem;
+}
 // Fonts
 .font-small {
   font-size: $font-small;
@@ -21,10 +33,14 @@
 }
 
 .page {
-  height: calc(100vh - 125px);
+  min-height: calc(100vh - 125px);
 }
 
 .line {
   height: 2px;
   background-color: black;
+}
+
+.width-100 {
+  width: 100%;
 }
