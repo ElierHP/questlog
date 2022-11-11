@@ -10,6 +10,8 @@ describe("Header", () => {
     renderWithProviders(<Header />);
     const heading = screen.getByRole("heading");
     expect(heading).toBeInTheDocument();
+    const headingLink = screen.getByRole("link", { name: "Quest Log" });
+    expect(headingLink).toBeInTheDocument();
   });
 
   test("renders nav list", () => {
@@ -27,15 +29,20 @@ describe("Header", () => {
     const newLink = screen.getByRole("link", { name: "New" });
     const completedLink = screen.getByRole("link", { name: "Completed" });
 
-    // Current anchor should load with the class: secondary.
+    // Current anchor should load with the class "secondary".
     expect(currentLink).toHaveClass("secondary");
 
-    // If user clicks on the "new" anchor, it should get class secondary
+    // If user clicks on the "new" anchor, it should get class "secondary"
     await user.click(newLink);
     expect(newLink).toHaveClass("secondary");
 
-    // If user clicks on the "completed" anchor, it should get class secondary
+    // If user clicks on the "completed" anchor, it should get class "secondary"
     await user.click(completedLink);
     expect(completedLink).toHaveClass("secondary");
+
+    // If user clicks on the logo, the "current" anchor should get class "secondary"
+    const heading = screen.getByRole("link", { name: "Quest Log" });
+    await user.click(heading);
+    expect(currentLink).toHaveClass("secondary");
   });
 });

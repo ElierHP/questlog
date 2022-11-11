@@ -25,7 +25,9 @@ export default function Header() {
       <div className={styles.logo}>
         {/* Logo */}
         <h1 className={`center ${styles.heading}`}>
-          <Link to="/">Quest Log</Link>
+          <Link to="/" onClick={() => setUrl("/")}>
+            Quest Log
+          </Link>
         </h1>
 
         {/* Exclamation Icon */}
