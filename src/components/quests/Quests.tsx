@@ -1,9 +1,11 @@
-import { useAppSelector } from "../../app/hooks";
+import { QuestType } from "../../app/features/questSlice";
 import styles from "./Quests.module.scss";
 
-export default function Quests() {
-  const { quests } = useAppSelector((state) => state.quests);
+type QuestsProps = {
+  quests: QuestType[];
+};
 
+export default function Quests({ quests }: QuestsProps) {
   return (
     <main className={styles.main}>
       <ul className={styles.list}>

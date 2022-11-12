@@ -35,7 +35,7 @@ export default function QuestForm() {
     <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
       {/* Name Input */}
       <label htmlFor="name">Name</label>
-      <input {...register("name")} />
+      <input id="name " {...register("name")} />
 
       {/* Error Message */}
       {errors.name?.message && (

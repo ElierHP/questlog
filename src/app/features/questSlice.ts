@@ -1,32 +1,33 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-type questType = {
+export type QuestType = {
   name: string;
   description: string;
   completed: boolean;
 };
 
-type InitialState = {
-  quests: questType[];
-};
+type InitialState = QuestType[];
 
-const initialState: InitialState = {
-  quests: [
-    {
-      name: "Compelete App!",
-      description: "Complete the quest log application within a week.",
-      completed: false,
-    },
-  ],
-};
+const initialState: InitialState = [
+  {
+    name: "Compelete App!",
+    description: "Complete the quest log application within a week.",
+    completed: false,
+  },
+  {
+    name: "Test the app!",
+    description: "Test the quest log application.",
+    completed: true,
+  },
+];
 
 const questSlice = createSlice({
   name: "quests",
   initialState,
   reducers: {
     // Add a new quest, payload should be an object.
-    add: (state, action: PayloadAction<questType>) => {
-      state.quests.push(action.payload);
+    add: (state, action: PayloadAction<QuestType>) => {
+      state.push(action.payload);
     },
   },
 });

@@ -17,13 +17,7 @@ test("Quests renders list items", async () => {
     },
   ];
 
-  renderWithProviders(<Quests />, {
-    preloadedState: {
-      quests: {
-        quests: initialQuests,
-      },
-    },
-  });
+  renderWithProviders(<Quests quests={initialQuests} />);
 
   const listItems = screen.getAllByRole("listitem");
   expect(listItems).toHaveLength(initialQuests.length);
