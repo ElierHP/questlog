@@ -3,10 +3,12 @@ import {
   configureStore,
   PreloadedState,
 } from "@reduxjs/toolkit";
+import appSlice from "./features/appSlice";
 import questSlice from "./features/questSlice";
 
 // Create the root reducer independently to obtain the RootState type
 const rootReducer = combineReducers({
+  app: appSlice,
   quests: questSlice,
 });
 

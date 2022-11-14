@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { v4 as uuidv4 } from "uuid";
 
 export type QuestType = {
   name: string;
@@ -17,22 +16,40 @@ const questSlice = createSlice({
   initialState,
   reducers: {
     setQuests: (state, action: PayloadAction<InitialState>) => {
+      // Set quests state to the payload. Used on first page load.
       return [...action.payload];
     },
+
     // Add a new quest, payload should be an object.
     addQuest: (state, action: PayloadAction<QuestType>) => {
       state.push(action.payload);
+      // Save to local storage.
       localStorage.setItem("quests", JSON.stringify(state));
     },
+
     // Delete a quest, payload should be quest id.
     deleteQuest: (state, action: PayloadAction<string>) => {
-      return state.filter((quest) => action.payload !== quest.id);
+      const editedQuests = state.filter((quest) => action.payload !== quest.id);
+
+      // If there are no quests left
+      if (editedQuests.length === 0) {
+        // delete key from local storage.
+        localStorage.removeItem("quests");
+      } else {
+        // Save to local storage.
+        localStorage.setItem("quests", JSON.stringify(editedQuests));
+      }
+
+      return editedQuests;
     },
+
     // Set completed to true, payload should be quest id.
     completeQuest: (state, action: PayloadAction<string>) => {
       state.forEach((quest) => {
         if (quest.id === action.payload) {
           quest.completed = true;
+          // Save to local storage.
+          localStorage.setItem("quests", JSON.stringify(state));
         }
       });
     },

@@ -1,31 +1,36 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import styles from "./Header.module.scss";
 import { BsExclamationLg } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { headerData } from "./headerData";
+import { useAppSelector } from "../../app/hooks";
+import { useDispatch } from "react-redux";
+import { setUrl } from "../../app/features/appSlice";
 
 export default function Header() {
   // Keeps track of current url, used for highlighting anchor tag.
-  const [url, setUrl] = useState("/");
+  const url = useAppSelector((state) => state.app.url);
 
-  // On first component load, change the url state to match the current route.
+  const dispatch = useDispatch();
+
+  // On first component load, change the url global state to match the current route.
   useEffect(() => {
     // if rooturl/new, changes url state to "/new"
     if (window.location.href.includes("/new")) {
-      setUrl("/new");
+      dispatch(setUrl("/new"));
     } else if (window.location.href.includes("/completed")) {
-      setUrl("/completed");
+      dispatch(setUrl("/completed"));
     } else {
-      setUrl("/");
+      dispatch(setUrl("/"));
     }
-  }, []);
+  }, [dispatch]);
 
   return (
     <header className={styles.header}>
       <div className={styles.logo}>
         {/* Logo */}
         <h1 className={`center ${styles.heading}`}>
-          <Link to="/" onClick={() => setUrl("/")}>
+          <Link to="/" onClick={() => dispatch(setUrl("/"))}>
             Quest Log
           </Link>
         </h1>
@@ -44,7 +49,7 @@ export default function Header() {
               <Link
                 to={data.url}
                 className={url === data.url ? "secondary" : ""}
-                onClick={() => setUrl(data.url)}
+                onClick={() => dispatch(setUrl(data.url))}
               >
                 {data.name}
               </Link>

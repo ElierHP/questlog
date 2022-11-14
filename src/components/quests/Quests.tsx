@@ -21,22 +21,29 @@ export default function Quests({ quests }: QuestsProps) {
           <li key={quest.name}>
             <h2>{quest.name}</h2>
             <p>{quest.description}</p>
-            <div className={styles.btnContainer}>
-              {/* Complete Button */}
-              <button
-                className="width-100"
-                onClick={() => dispatch(completeQuest(quest.id))}
-              >
-                Complete Quest
+
+            {!quest.completed ? (
+              <div className={styles.btnContainer}>
+                {/* Complete Button */}
+                <button
+                  className="width-100"
+                  onClick={() => dispatch(completeQuest(quest.id))}
+                >
+                  Complete Quest
+                </button>
+                {/* Delete Button */}
+                <button
+                  className={styles.deleteButton}
+                  onClick={() => dispatch(deleteQuest(quest.id))}
+                >
+                  abandon quest
+                </button>
+              </div>
+            ) : (
+              <button onClick={() => dispatch(deleteQuest(quest.id))}>
+                delete quest
               </button>
-              {/* Delete Button */}
-              <button
-                className={styles.deleteButton}
-                onClick={() => dispatch(deleteQuest(quest.id))}
-              >
-                abandon quest
-              </button>
-            </div>
+            )}
           </li>
         ))}
       </ul>

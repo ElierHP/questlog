@@ -6,6 +6,7 @@ import { useAppDispatch } from "../../app/hooks";
 import { addQuest } from "../../app/features/questSlice";
 import { useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
+import { setUrl } from "../../app/features/appSlice";
 
 type FormData = {
   name: string;
@@ -36,6 +37,7 @@ export default function QuestForm() {
     );
     // Reroute to root page.
     navigate("/");
+    dispatch(setUrl("/"));
   };
   return (
     <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>

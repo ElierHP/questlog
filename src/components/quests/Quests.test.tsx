@@ -14,6 +14,12 @@ const initialQuests = [
   {
     name: "Test2",
     description: "Test description 2",
+    completed: false,
+    id: uuidv4(),
+  },
+  {
+    name: "Test3",
+    description: "Test description 3",
     completed: true,
     id: uuidv4(),
   },
@@ -26,19 +32,23 @@ describe("Quests renders correctly.", () => {
     expect(listItems).toHaveLength(initialQuests.length);
   });
 
-  test("Renders buttons correctly.", () => {
+  test("Current quests render buttons correctly.", () => {
     renderWithProviders(<Quests quests={initialQuests} />);
+    // Quests that have not been completed yet.
+    const currentQuests = initialQuests.filter(
+      (quest) => quest.completed === false
+    );
 
     // Complete buttons
     const completeButtons = screen.getAllByRole("button", {
       name: /complete quest/i,
     });
-    expect(completeButtons).toHaveLength(initialQuests.length);
+    expect(completeButtons).toHaveLength(currentQuests.length);
 
     // Abandon buttons
     const abandonButtons = screen.getAllByRole("button", {
       name: /abandon quest/i,
     });
-    expect(abandonButtons).toHaveLength(initialQuests.length);
+    expect(abandonButtons).toHaveLength(currentQuests.length);
   });
 });
