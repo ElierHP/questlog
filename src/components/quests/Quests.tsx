@@ -1,4 +1,9 @@
-import { QuestType } from "../../app/features/questSlice";
+import {
+  completeQuest,
+  deleteQuest,
+  QuestType,
+} from "../../app/features/questSlice";
+import { useAppDispatch } from "../../app/hooks";
 import styles from "./Quests.module.scss";
 
 type QuestsProps = {
@@ -6,6 +11,8 @@ type QuestsProps = {
 };
 
 export default function Quests({ quests }: QuestsProps) {
+  const dispatch = useAppDispatch();
+
   return (
     <main className={styles.main}>
       <ul className={styles.list}>
@@ -14,9 +21,21 @@ export default function Quests({ quests }: QuestsProps) {
           <li key={quest.name}>
             <h2>{quest.name}</h2>
             <p>{quest.description}</p>
-            <div>
-              <button className={styles.button}>Complete Quest</button>
-              <p className={"center font-small"}>abandon quest</p>
+            <div className={styles.btnContainer}>
+              {/* Complete Button */}
+              <button
+                className="width-100"
+                onClick={() => dispatch(completeQuest(quest.id))}
+              >
+                Complete Quest
+              </button>
+              {/* Delete Button */}
+              <button
+                className={styles.deleteButton}
+                onClick={() => dispatch(deleteQuest(quest.id))}
+              >
+                abandon quest
+              </button>
             </div>
           </li>
         ))}

@@ -3,8 +3,9 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { schema } from "../../app/schema/questSchema";
 import { useAppDispatch } from "../../app/hooks";
-import { add } from "../../app/features/questSlice";
+import { addQuest } from "../../app/features/questSlice";
 import { useNavigate } from "react-router-dom";
+import { v4 as uuidv4 } from "uuid";
 
 type FormData = {
   name: string;
@@ -26,7 +27,12 @@ export default function QuestForm() {
   //   Submit adds a new quest to the global state.
   const onSubmit = (data: FormData) => {
     dispatch(
-      add({ name: data.name, description: data.description, completed: false })
+      addQuest({
+        name: data.name,
+        description: data.description,
+        completed: false,
+        id: uuidv4(),
+      })
     );
     // Reroute to root page.
     navigate("/");
