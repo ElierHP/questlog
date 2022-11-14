@@ -10,28 +10,19 @@ export type QuestType = {
 
 type InitialState = QuestType[];
 
-const initialState: InitialState = [
-  {
-    name: "Compelete App!",
-    description: "Complete the quest log application within a week.",
-    completed: false,
-    id: uuidv4(),
-  },
-  {
-    name: "Test the app!",
-    description: "Test the quest log application.",
-    completed: true,
-    id: uuidv4(),
-  },
-];
+const initialState: InitialState = [];
 
 const questSlice = createSlice({
   name: "quests",
   initialState,
   reducers: {
+    setQuests: (state, action: PayloadAction<InitialState>) => {
+      return [...action.payload];
+    },
     // Add a new quest, payload should be an object.
     addQuest: (state, action: PayloadAction<QuestType>) => {
       state.push(action.payload);
+      localStorage.setItem("quests", JSON.stringify(state));
     },
     // Delete a quest, payload should be quest id.
     deleteQuest: (state, action: PayloadAction<string>) => {
@@ -49,4 +40,5 @@ const questSlice = createSlice({
 });
 
 export default questSlice.reducer;
-export const { addQuest, deleteQuest, completeQuest } = questSlice.actions;
+export const { addQuest, deleteQuest, completeQuest, setQuests } =
+  questSlice.actions;
