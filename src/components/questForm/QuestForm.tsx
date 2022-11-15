@@ -11,6 +11,11 @@ import { setUrl } from "../../app/features/appSlice";
 type FormData = {
   name: string;
   description: string;
+  checklist: string;
+  checklist2: string;
+  checklist3: string;
+  checklist4: string;
+  checklist5: string;
 };
 
 export default function QuestForm() {
@@ -33,6 +38,13 @@ export default function QuestForm() {
         description: data.description,
         completed: false,
         id: uuidv4(),
+        checklist: [
+          { name: data.checklist, checked: false, id: uuidv4() },
+          { name: data.checklist2, checked: false, id: uuidv4() },
+          { name: data.checklist3, checked: false, id: uuidv4() },
+          { name: data.checklist4, checked: false, id: uuidv4() },
+          { name: data.checklist5, checked: false, id: uuidv4() },
+        ],
       })
     );
     // Reroute to root page.
@@ -61,6 +73,15 @@ export default function QuestForm() {
       {errors.description?.message && (
         <p className={styles.errorMsg}>{errors.description?.message}</p>
       )}
+
+      {/* Checklist */}
+      <label htmlFor="checklist">Requirements</label>
+      <input id="checklist" {...register("checklist")} />
+      <input id="checklist2" {...register("checklist2")} />
+      <input id="checklist3" {...register("checklist3")} />
+      <input id="checklist4" {...register("checklist4")} />
+      <input id="checklist5" {...register("checklist5")} />
+
       <button className="mt-2" type="submit">
         Add Quest
       </button>

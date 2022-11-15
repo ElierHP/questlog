@@ -18,9 +18,28 @@ export default function Quests({ quests }: QuestsProps) {
       <ul className={styles.list}>
         {/* Render list items based on tasks global state */}
         {quests.map((quest) => (
-          <li key={quest.name}>
+          <li className={styles.listItem} key={quest.name}>
             <h2>{quest.name}</h2>
             <p>{quest.description}</p>
+
+            {/* If there is a checklist, render it. */}
+            {quest.checklist && (
+              <ul className={styles.checklist}>
+                {quest.checklist.map((listItem) => (
+                  <li key={listItem.id}>
+                    {listItem.name}
+                    {/* If name isn't an empty string, display input */}
+                    {listItem.name !== "" && (
+                      <input
+                        type="checkbox"
+                        name={listItem.id}
+                        id={listItem.id}
+                      />
+                    )}
+                  </li>
+                ))}
+              </ul>
+            )}
 
             {!quest.completed ? (
               <div className={styles.btnContainer}>

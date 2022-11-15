@@ -9,15 +9,22 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 2rem;
+}
 
+.listItem {
+  background-color: $light;
+  padding: 4rem 2.5rem;
+  border-radius: 0.5rem;
+  display: grid;
+  grid-template-rows: 1fr 2fr 2fr 1fr;
+  grid-gap: 1rem;
+}
+
+.checklist {
   li {
-    background-color: $light;
-    padding: 4rem 2.5rem;
-    border-radius: 0.5rem;
     display: flex;
-    flex-direction: column;
     justify-content: space-between;
-    gap: 2rem;
+    font-size: $font-small;
   }
 }
 

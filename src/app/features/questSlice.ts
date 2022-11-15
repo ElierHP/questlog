@@ -1,10 +1,17 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
+export type QuestChecklist = {
+  name: string;
+  checked: false;
+  id: string;
+};
+
 export type QuestType = {
   name: string;
   description: string;
   completed: boolean;
   id: string;
+  checklist?: QuestChecklist[];
 };
 
 type InitialState = QuestType[];

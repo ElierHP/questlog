@@ -5,12 +5,12 @@
   flex-direction: column;
   gap: 1rem;
   margin: auto;
-  max-width: 400px;
+  max-width: 600px;
   background: $neutral;
   padding: 2.5rem;
-  margin-top: 2rem;
+  margin-top: 1.5rem;
   @media (min-width: $xs) {
-    padding: 4rem;
+    padding: 3rem 2rem;
   }
 }
 
