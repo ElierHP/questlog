@@ -9,7 +9,7 @@ export default function Current() {
 
   return (
     <div>
-      <h2 className="center mt-1">Current Quests</h2>
+      <h2 className="center">Current Quests</h2>
       <Quests quests={quests} />
     </div>
   );

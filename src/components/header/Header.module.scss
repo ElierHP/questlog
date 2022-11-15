@@ -2,14 +2,10 @@
 
 .header {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 0;
+  padding: 3rem 0;
   flex-direction: column;
   gap: 1rem;
-  @media (min-width: $xs) {
-    flex-direction: row;
-  }
+  background: $dark;
 }
 
 .logo {
@@ -38,18 +34,37 @@
 
 .icon {
   transform: rotate(10deg);
-  color: $primary;
+  color: $primaryLight;
 }
 
 .navlist {
   display: flex;
   align-items: center;
-  justify-content: center;
   gap: 2rem;
+  flex-direction: column;
+  margin-top: 4rem;
+  padding: 0 2rem;
   li {
-    cursor: pointer;
+    font-size: $font-medium;
+    font-weight: 600;
+    background: $primary;
+    text-align: center;
+    border-radius: 1px;
+    width: 100%;
+    transition: all 0.5s ease-in-out;
     &:hover {
-      color: $primary;
+      background: $primaryLight;
+      transform: translateX(40px);
     }
   }
+  a {
+    cursor: pointer;
+    padding: 1.5rem 0;
+    display: block;
+  }
+}
+
+.selected {
+  color: $secondaryLight;
+  background: $primaryLight;
 }

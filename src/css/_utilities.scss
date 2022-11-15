@@ -20,11 +20,6 @@
   font-size: $font-small;
 }
 
-// Colors
-.secondary {
-  color: $secondary;
-}
-
 // Misc
 .container {
   max-width: 1200px;
@@ -33,7 +28,7 @@
 }
 
 .page {
-  min-height: calc(100vh - 110px);
+  min-height: calc(100vh - 63.9px);
 }
 
 .line {

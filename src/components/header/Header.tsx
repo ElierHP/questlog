@@ -48,7 +48,7 @@ export default function Header() {
             <li key={data.url}>
               <Link
                 to={data.url}
-                className={url === data.url ? "secondary" : ""}
+                className={url === data.url ? styles.selected : ""}
                 onClick={() => dispatch(setUrl(data.url))}
               >
                 {data.name}

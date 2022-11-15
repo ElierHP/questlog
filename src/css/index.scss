@@ -17,7 +17,7 @@ body {
 
 a {
   text-decoration: none;
-  color: $body;
+  color: $light;
 }
 
 h1,
@@ -51,11 +51,11 @@ button {
   cursor: pointer;
   border: none;
   padding: 0.5rem 1rem;
-  background-color: $primary;
+  background-color: $secondary;
   color: $light;
-  transition: all 0.2s ease-in-out;
+  transition: all 0.3s ease-in-out;
   &:hover {
-    background-color: $secondary;
+    background-color: $primary;
   }
 }
 

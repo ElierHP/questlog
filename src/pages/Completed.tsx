@@ -9,7 +9,7 @@ export default function Completed() {
 
   return (
     <div>
-      <h2 className="center mt-1">Completed Quests</h2>
+      <h2 className="center">Completed Quests</h2>
       <Quests quests={quests} />
     </div>
   );
