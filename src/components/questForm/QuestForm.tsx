@@ -82,6 +82,17 @@ export default function QuestForm() {
       <input id="checklist4" {...register("checklist4")} />
       <input id="checklist5" {...register("checklist5")} />
 
+      {/* Checklist error messages */}
+      {errors.checklist?.message ||
+      errors.checklist2?.message ||
+      errors.checklist3?.message ||
+      errors.checklist4?.message ||
+      errors.checklist5?.message ? (
+        <p className={styles.errorMsg}>
+          One or more requirements are too long.
+        </p>
+      ) : null}
+
       <button className="mt-2" type="submit">
         Add Quest
       </button>

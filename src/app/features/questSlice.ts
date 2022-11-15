@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export type QuestChecklist = {
   name: string;
-  checked: false;
+  checked: boolean;
   id: string;
 };
 
@@ -36,7 +36,9 @@ const questSlice = createSlice({
 
     // Delete a quest, payload should be quest id.
     deleteQuest: (state, action: PayloadAction<string>) => {
-      const editedQuests = state.filter((quest) => action.payload !== quest.id);
+      const editedQuests: InitialState = state.filter(
+        (quest) => action.payload !== quest.id
+      );
 
       // If there are no quests left
       if (editedQuests.length === 0) {
@@ -60,9 +62,31 @@ const questSlice = createSlice({
         }
       });
     },
+
+    // Set a checklist item to true or false.
+    checkQuest: (
+      state,
+      action: PayloadAction<{ id: string; questId: string }>
+    ) => {
+      // Find current quest with payload questId.
+      const quest = state.find((quest) => quest.id === action.payload.questId);
+
+      // Find the checklist item with payload id.
+      const checklistItem = quest?.checklist?.find(
+        (item) => item.id === action.payload.id
+      );
+
+      // Set current checklist item to it's opossite boolean.
+      if (checklistItem) {
+        checklistItem.checked = !checklistItem.checked;
+      }
+
+      // Save to local storage.
+      localStorage.setItem("quests", JSON.stringify(state));
+    },
   },
 });
 
 export default questSlice.reducer;
-export const { addQuest, deleteQuest, completeQuest, setQuests } =
+export const { addQuest, deleteQuest, completeQuest, setQuests, checkQuest } =
   questSlice.actions;
