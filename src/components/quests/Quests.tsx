@@ -67,9 +67,14 @@ export default function Quests({ quests }: QuestsProps) {
                 </button>
               </div>
             ) : (
-              <button onClick={() => dispatch(deleteQuest(quest.id))}>
-                delete quest
-              </button>
+              <div>
+                <button
+                  className="width-100"
+                  onClick={() => dispatch(deleteQuest(quest.id))}
+                >
+                  clear quest
+                </button>
+              </div>
             )}
           </li>
         ))}

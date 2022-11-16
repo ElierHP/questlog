@@ -24,6 +24,7 @@
   display: grid;
   grid-template-rows: 1fr 2fr 2fr 1fr;
   grid-gap: 1.5rem;
+  align-items: center;
 }
 
 .checklist {

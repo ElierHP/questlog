@@ -2,10 +2,13 @@
 
 .layout {
   display: grid;
-  grid-template-columns: 1fr 5fr;
+  grid-template-columns: 1fr;
+  @media (min-width: $sm) {
+    grid-template-columns: 1fr 5fr;
+  }
 }
 
 .main {
-  padding: 3rem 3rem 0 3rem;
+  padding: 3rem;
   background: $neutral;
 }

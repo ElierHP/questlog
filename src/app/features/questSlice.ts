@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { questData } from "../utils/questData";
 
 export type QuestChecklist = {
   name: string;
@@ -11,12 +12,12 @@ export type QuestType = {
   description: string;
   completed: boolean;
   id: string;
-  checklist?: QuestChecklist[];
+  checklist: QuestChecklist[];
 };
 
 type InitialState = QuestType[];
 
-const initialState: InitialState = [];
+const initialState: InitialState = [...questData];
 
 const questSlice = createSlice({
   name: "quests",
@@ -72,7 +73,7 @@ const questSlice = createSlice({
       const quest = state.find((quest) => quest.id === action.payload.questId);
 
       // Find the checklist item with payload id.
-      const checklistItem = quest?.checklist?.find(
+      const checklistItem = quest?.checklist.find(
         (item) => item.id === action.payload.id
       );
 

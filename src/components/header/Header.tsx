@@ -31,7 +31,7 @@ export default function Header() {
         {/* Logo */}
         <h1 className={`center ${styles.heading}`}>
           <Link to="/" onClick={() => dispatch(setUrl("/"))}>
-            Quest-Log
+            Quest Log
           </Link>
         </h1>
 

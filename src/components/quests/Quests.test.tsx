@@ -10,18 +10,21 @@ const initialQuests = [
     description: "Test description 1",
     completed: false,
     id: uuidv4(),
+    checklist: [{ name: "test", checked: false, id: uuidv4() }],
   },
   {
     name: "Test2",
     description: "Test description 2",
     completed: false,
     id: uuidv4(),
+    checklist: [{ name: "test", checked: false, id: uuidv4() }],
   },
   {
     name: "Test3",
     description: "Test description 3",
     completed: true,
     id: uuidv4(),
+    checklist: [{ name: "test", checked: false, id: uuidv4() }],
   },
 ];
 
