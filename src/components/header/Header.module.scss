@@ -2,96 +2,112 @@
 
 .header {
   display: flex;
-  padding: 2rem 0;
-  flex-direction: column;
+  padding: 1rem 2rem;
+  justify-content: space-between;
+  align-items: center;
   gap: 1rem;
   background: $dark;
-  overflow: hidden;
+
   @media (min-width: $sm) {
-    overflow: visible;
+    display: block;
     padding: 3rem 0;
   }
 }
 
 .logo {
-  // Galaxy fold breakpoint
-  @media (max-width: $xxs) {
-    margin-left: 0;
-  }
-
   display: flex;
   justify-content: center;
-  align-items: center;
-  gap: 0.2rem;
   cursor: pointer;
-  margin-left: 1.5rem;
-  padding: 0 1rem;
 
-  @media (min-width: $xs) {
-    margin-left: 0;
-  }
-
-  // Logo text
-  a {
-    font-size: 3rem;
-    @media (min-width: $md) {
-      font-size: $font-heading;
+  img {
+    width: 160px;
+    @media (min-width: $sm) {
+      width: initial;
     }
   }
 }
 
-.iconContainer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.menuIcon {
+  display: block;
+  font-size: 4rem;
+  transition: all 0.5s ease-in-out;
   @media (min-width: $sm) {
     display: none;
   }
-  @media (min-width: $lg) {
-    display: block;
-  }
 }
 
-.icon {
-  transform: rotate(10deg);
-  color: $primaryLight;
+.nav {
+  position: fixed;
+  left: 0;
+  top: 0;
+  background: $dark;
+  height: 100%;
+  width: 60%;
+  transition: all 0.5s ease-in-out;
+  transform: translateX(-350px);
+
+  @media (min-width: $xs) {
+    transform: translateX(-600px);
+  }
+
+  @media (min-width: $sm) {
+    position: relative;
+    height: initial;
+    width: initial;
+    background: none;
+    transform: translateX(0);
+  }
 }
 
 .navlist {
   display: flex;
-  align-items: center;
-  gap: 2rem;
   flex-direction: column;
-  margin-top: 1rem;
-  padding: 0 2rem;
+  gap: 1.2rem;
+  padding: 0 1rem;
+  margin-top: 4rem;
   @media (min-width: $sm) {
-    margin-top: 4rem;
-  }
-
-  li {
-    font-size: $font-medium;
-    font-weight: 600;
-    background: $primary;
-    text-align: center;
-    border-radius: 1px;
-    width: 100%;
-    transition: all 0.5s ease-in-out;
-    &:hover {
-      background: $primaryLight;
-      transform: translateX(40px);
-    }
-  }
-  a {
-    cursor: pointer;
-    padding: 0.3rem 0;
-    display: block;
-    @media (min-width: $sm) {
-      padding: 1.5rem 1rem;
-    }
+    padding: 0 2rem;
   }
 }
 
+.navlist li {
+  font-size: $font-medium;
+  font-weight: 600;
+  text-align: center;
+}
+
+.navlist a {
+  display: block;
+  background: $primary;
+  cursor: pointer;
+  transition: all 0.5s ease-in-out;
+  border-radius: 4px;
+  padding: 0.3rem 0;
+  @media (min-width: $sm) {
+    padding: 1.2rem 1rem;
+  }
+
+  &:hover {
+    background: $primaryLight;
+    transform: translateX(40px);
+  }
+}
+
+// Highlights currently selected anchor tag
 .selected {
   color: $secondaryLight;
-  background: $primaryLight;
+  background: $primaryLight !important;
+  transform: translateX(40px);
+}
+
+// Sets navbar to original position
+.showNav {
+  transform: translateX(0);
+}
+
+// Hides second logo in desktop view
+.hideLogo {
+  @media (min-width: $sm) {
+    display: none;
+  }
 }

@@ -1,13 +1,17 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import styles from "./Header.module.scss";
-import { BsExclamationLg } from "react-icons/bs";
 import { Link } from "react-router-dom";
-import { headerData } from "./headerData";
+import { headerData, headerDataType } from "./headerData";
 import { useAppSelector } from "../../app/hooks";
 import { useDispatch } from "react-redux";
 import { setUrl } from "../../app/features/appSlice";
+import logo from "../../assets/logo.svg";
+import { HiMenuAlt3 } from "react-icons/hi";
 
 export default function Header() {
+  // Handles mobile sidebar display
+  const [isOpen, setIsOpen] = useState(false);
+
   // Keeps track of current url, used for highlighting anchor tag.
   const url = useAppSelector((state) => state.app.url);
 
@@ -25,31 +29,44 @@ export default function Header() {
     }
   }, [dispatch]);
 
+  // Handles click event for <Link />
+  const handleLink = (data: headerDataType) => {
+    dispatch(setUrl(data.url));
+    setIsOpen(false);
+  };
+
   return (
     <header className={styles.header}>
+      {/* Logo */}
       <div className={styles.logo}>
-        {/* Logo */}
-        <h1 className={`center ${styles.heading}`}>
-          <Link to="/" onClick={() => dispatch(setUrl("/"))}>
-            Quest Log
-          </Link>
-        </h1>
-
-        {/* Exclamation Icon */}
-        <div className={styles.iconContainer}>
-          <BsExclamationLg className={styles.icon} size={37} />
-        </div>
+        <img src={logo} alt="logo" />
       </div>
 
-      {/* Nav list */}
-      <nav>
+      {/* Mobile Menu Icon */}
+      <div onClick={() => setIsOpen(!isOpen)}>
+        <HiMenuAlt3
+          className={
+            isOpen
+              ? `${styles.menuIcon} secondary-light`
+              : `${styles.menuIcon} light`
+          }
+        />
+      </div>
+
+      {/* Navbar */}
+      <nav className={isOpen ? `${styles.nav} ${styles.showNav}` : styles.nav}>
+        {/* Mobile sidebar logo */}
+        <div className={`${styles.logo} mt-2 ${styles.hideLogo}`}>
+          <img src={logo} alt="logo" />
+        </div>
+
         <ul className={styles.navlist}>
           {headerData.map((data) => (
             <li key={data.url}>
               <Link
                 to={data.url}
                 className={url === data.url ? styles.selected : ""}
-                onClick={() => dispatch(setUrl(data.url))}
+                onClick={() => handleLink(data)}
               >
                 {data.name}
               </Link>
