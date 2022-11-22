@@ -39,7 +39,9 @@ export default function Header() {
     <header className={styles.header}>
       {/* Logo */}
       <div className={styles.logo}>
-        <img src={logo} alt="logo" />
+        <Link to={"/"} onClick={() => handleLink(headerData[0])}>
+          <img src={logo} alt="header-logo" />
+        </Link>
       </div>
 
       {/* Mobile Menu Icon */}
@@ -57,7 +59,9 @@ export default function Header() {
       <nav className={isOpen ? `${styles.nav} ${styles.showNav}` : styles.nav}>
         {/* Mobile sidebar logo */}
         <div className={`${styles.logo} mt-2 ${styles.hideLogo}`}>
-          <img src={logo} alt="logo" />
+          <Link to={"/"} onClick={() => handleLink(headerData[0])}>
+            <img src={logo} alt="mobile-menu-logo" />
+          </Link>
         </div>
 
         <ul className={styles.navlist}>

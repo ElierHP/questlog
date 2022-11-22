@@ -1,10 +1,10 @@
 import {
-  checkQuest,
   completeQuest,
   deleteQuest,
   QuestType,
 } from "../../app/features/questSlice";
 import { useAppDispatch } from "../../app/hooks";
+import Checklist from "../checklist/Checklist";
 import styles from "./Quests.module.scss";
 
 type QuestsProps = {
@@ -24,30 +24,9 @@ export default function Quests({ quests }: QuestsProps) {
             <p>{quest.description}</p>
 
             {/* If there is a checklist, render it. */}
-            {quest.checklist && (
-              <ul className={styles.checklist}>
-                {quest.checklist.map((listItem) => (
-                  <li key={listItem.id}>
-                    {listItem.name}
-
-                    {/* If name isn't an empty string, display input */}
-                    {listItem.name !== "" && (
-                      <input
-                        type="checkbox"
-                        name={listItem.id}
-                        id={listItem.id}
-                        checked={listItem.checked}
-                        onChange={() =>
-                          dispatch(
-                            checkQuest({ id: listItem.id, questId: quest.id })
-                          )
-                        }
-                      />
-                    )}
-                  </li>
-                ))}
-              </ul>
-            )}
+            {quest.checklist ? (
+              <Checklist checklist={quest.checklist} questId={quest.id} />
+            ) : null}
 
             {!quest.completed ? (
               <div className={styles.btnContainer}>

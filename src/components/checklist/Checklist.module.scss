@@ -1,0 +1,9 @@
+@import "../../css/variables";
+
+.checklist {
+  li {
+    display: flex;
+    justify-content: space-between;
+    font-size: $font-small;
+  }
+}

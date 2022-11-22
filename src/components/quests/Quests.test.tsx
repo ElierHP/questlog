@@ -10,21 +10,21 @@ const initialQuests = [
     description: "Test description 1",
     completed: false,
     id: uuidv4(),
-    checklist: [{ name: "test", checked: false, id: uuidv4() }],
+    checklist: [],
   },
   {
     name: "Test2",
     description: "Test description 2",
     completed: false,
     id: uuidv4(),
-    checklist: [{ name: "test", checked: false, id: uuidv4() }],
+    checklist: [],
   },
   {
     name: "Test3",
     description: "Test description 3",
     completed: true,
     id: uuidv4(),
-    checklist: [{ name: "test", checked: false, id: uuidv4() }],
+    checklist: [],
   },
 ];
 
@@ -32,6 +32,7 @@ describe("Quests renders correctly.", () => {
   test("Renders list items correctly.", () => {
     renderWithProviders(<Quests quests={initialQuests} />);
     const listItems = screen.getAllByRole("listitem");
+    screen.debug();
     expect(listItems).toHaveLength(initialQuests.length);
   });
 

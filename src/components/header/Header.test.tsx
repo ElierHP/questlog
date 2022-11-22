@@ -6,12 +6,19 @@ import user from "@testing-library/user-event";
 
 describe("Header", () => {
   // Heading & Logo Render
-  test("renders logo", () => {
+  test("renders logos correctly.", () => {
     renderWithProviders(<Header />);
-    const heading = screen.getByRole("heading");
-    expect(heading).toBeInTheDocument();
-    const headingLink = screen.getByRole("link", { name: "Quest Log" });
-    expect(headingLink).toBeInTheDocument();
+    // Logo in the main navbar
+    const headerLogo = screen.getByRole("img", {
+      name: /header\-logo/i,
+    });
+    expect(headerLogo).toBeInTheDocument();
+
+    // Logo located in the mobile menu
+    const mobileMenuLogo = screen.getByRole("img", {
+      name: /mobile\-menu\-logo/i,
+    });
+    expect(mobileMenuLogo).toBeInTheDocument();
   });
 
   test("renders nav list", () => {
@@ -29,20 +36,20 @@ describe("Header", () => {
     const newLink = screen.getByRole("link", { name: "New" });
     const completedLink = screen.getByRole("link", { name: "Completed" });
 
-    // Current anchor should load with the class "secondary".
-    expect(currentLink).toHaveClass("secondary");
+    // Current anchor should load with the correct class
+    expect(currentLink).toHaveClass("selected");
 
-    // If user clicks on the "new" anchor, it should get class "secondary"
+    // If user clicks on the "new" anchor, it should have the correct class
     await user.click(newLink);
-    expect(newLink).toHaveClass("secondary");
+    expect(newLink).toHaveClass("selected");
 
-    // If user clicks on the "completed" anchor, it should get class "secondary"
+    // If user clicks on the "completed" anchor, it should have the correct class
     await user.click(completedLink);
-    expect(completedLink).toHaveClass("secondary");
+    expect(completedLink).toHaveClass("selected");
 
-    // If user clicks on the logo, the "current" anchor should get class "secondary"
-    const heading = screen.getByRole("link", { name: "Quest Log" });
-    await user.click(heading);
-    expect(currentLink).toHaveClass("secondary");
+    // If user clicks on the logo, the "current" anchor should have the correct class
+    const logo = screen.getByRole("img", { name: /header\-logo/i });
+    await user.click(logo);
+    expect(currentLink).toHaveClass("selected");
   });
 });
