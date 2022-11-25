@@ -1,30 +1,30 @@
 import styles from "./Checklist.module.scss";
-import { checkQuest, QuestChecklist } from "../../app/features/questSlice";
+import { checkQuest, QuestType } from "../../app/features/questSlice";
 import { useAppDispatch } from "../../app/hooks";
 
 type ChecklistType = {
-  checklist: QuestChecklist[];
-  questId: string;
+  quest: QuestType;
 };
 
-export default function Checklist({ checklist, questId }: ChecklistType) {
+export default function Checklist({ quest }: ChecklistType) {
   const dispatch = useAppDispatch();
 
   return (
     <ul className={styles.checklist}>
-      {checklist.map((listItem) => (
+      {quest.checklist.map((listItem) => (
         <li key={listItem.id}>
-          {listItem.name}
+          <label htmlFor={listItem.name}> {listItem.name}</label>
           {/* If name isn't an empty string, display input */}
           {listItem.name !== "" && (
             <input
               type="checkbox"
               name={listItem.name}
-              id={listItem.id}
+              id={listItem.name}
               checked={listItem.checked}
               onChange={() =>
-                dispatch(checkQuest({ id: listItem.id, questId }))
+                dispatch(checkQuest({ id: listItem.id, questId: quest.id }))
               }
+              data-testid={listItem.id}
             />
           )}
         </li>

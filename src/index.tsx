@@ -4,11 +4,10 @@ import "./css/reset.scss";
 import "./css/index.scss";
 import App from "./app/App";
 import { Provider } from "react-redux";
-import { setupStore } from "./app/store";
+import { store } from "./app/store";
 import { BrowserRouter } from "react-router-dom";
 
 // Setup redux store.
-const store = setupStore();
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement

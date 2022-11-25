@@ -1,17 +1,22 @@
-import {
-  completeQuest,
-  deleteQuest,
-  QuestType,
-} from "../../app/features/questSlice";
-import { useAppDispatch } from "../../app/hooks";
+import { completeQuest, deleteQuest } from "../../app/features/questSlice";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import Checklist from "../checklist/Checklist";
 import styles from "./Quests.module.scss";
 
 type QuestsProps = {
-  quests: QuestType[];
+  showCompleted: boolean;
 };
 
-export default function Quests({ quests }: QuestsProps) {
+export default function Quests({ showCompleted }: QuestsProps) {
+  // Get quests from global store with completed: false
+  const quests = useAppSelector((state) => {
+    if (showCompleted) {
+      return state.quests.filter((quest) => quest.completed);
+    } else {
+      return state.quests.filter((quest) => !quest.completed);
+    }
+  });
+
   const dispatch = useAppDispatch();
 
   return (
@@ -24,9 +29,7 @@ export default function Quests({ quests }: QuestsProps) {
             <p>{quest.description}</p>
 
             {/* If there is a checklist, render it. */}
-            {quest.checklist ? (
-              <Checklist checklist={quest.checklist} questId={quest.id} />
-            ) : null}
+            {quest.checklist ? <Checklist quest={quest} /> : null}
 
             {!quest.completed ? (
               <div className={styles.btnContainer}>

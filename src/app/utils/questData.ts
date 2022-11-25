@@ -11,7 +11,7 @@ export const questData: QuestType[] = [
     id: uuidv4(),
     checklist: [
       {
-        name: "Create a new quest.",
+        name: "Add a new quest.",
         checked: false,
         id: uuidv4(),
       },

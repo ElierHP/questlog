@@ -1,29 +1,39 @@
 import { screen } from "@testing-library/react";
 import { renderWithProviders } from "../../test-utils";
-import { v4 as uuidv4 } from "uuid";
 import Checklist from "./Checklist";
-
-const initialQuests = [
-  {
-    name: "Test1",
-    description: "Test description 1",
-    completed: false,
-    id: uuidv4(),
-    checklist: [
-      { name: "test checklist", checked: true, id: uuidv4() },
-      { name: "test checklist2", checked: false, id: uuidv4() },
-    ],
-  },
-];
+import { questData } from "../../app/utils/questData";
+import user from "@testing-library/user-event";
+import Quests from "../quests/Quests";
 
 test("Checklist renders correctly.", () => {
-  const checklist = initialQuests[0].checklist;
-  renderWithProviders(
-    <Checklist checklist={checklist} questId={initialQuests[0].id} />
-  );
+  const quest = questData[0];
+  renderWithProviders(<Checklist quest={quest} />, {
+    preloadedState: {
+      quests: questData,
+    },
+  });
+
   const list = screen.getByRole("list");
   expect(list).toBeInTheDocument();
 
   const listItem = screen.getAllByRole("listitem");
-  expect(listItem).toHaveLength(checklist.length);
+  expect(listItem).toHaveLength(quest.checklist.length);
+});
+
+test("Checkbox toggles true and false correctly when clicked.", async () => {
+  const quest = questData[0];
+  user.setup();
+  renderWithProviders(<Quests showCompleted={false} />, {
+    preloadedState: {
+      quests: questData,
+    },
+  });
+
+  const checkbox = screen.getByTestId(quest.checklist[0].id);
+
+  // Checkbox checks and unchecks when user
+  await user.click(checkbox);
+  expect(checkbox).toBeChecked();
+  await user.click(checkbox);
+  expect(checkbox).not.toBeChecked();
 });
